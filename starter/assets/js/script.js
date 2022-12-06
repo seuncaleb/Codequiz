@@ -299,7 +299,7 @@ function messageInArea(type, friend) {
 
     else {
 
-      location.pathname ="/starter/html/highscores.html"
+      location.pathname ="/highscores.html"
       messageInArea("error", "initials shouldn't exceed 3 characters")
     }
  
