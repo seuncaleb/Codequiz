@@ -25,7 +25,7 @@ goBack.addEventListener("click", function(){
 
     //event.preventDefault
 
-    window.location.href="http://127.0.0.1:5502/index.html"
+    window.location.pathname="/index.html"
 })
 
 
@@ -35,3 +35,7 @@ clear.addEventListener("click", function (){
     iniScores.textContent = "";
 
 })
+
+var pname = window.location.pathname;
+
+console.log(pname)

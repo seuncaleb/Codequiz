@@ -64,7 +64,7 @@ for (var i=0; i < options.length; i++){
 // create two functions for right and wrong answers 
 function rightAnswer () { 
 answer.textContent = "Correct!"
-score ++
+score ++    
  answer.setAttribute("style", "color: Green; font-size: 12px;")
 }
 
@@ -134,9 +134,9 @@ let score = 0
 function quiz (){
 
    
-    let currentQuizData = qb[currentQuiz]
+    let currentQuizData = qb[currentQuiz];
 
-eachQuestion.innerHTML =currentQuizData.question
+eachQuestion.innerHTML =currentQuizData.question;
 
 
 op1.textContent = currentQuizData.a;
@@ -154,28 +154,27 @@ op4.textContent = currentQuizData.d;
 
 
  op1.addEventListener("click", function(){
-
+    console.log(op1);
     if ( currentQuizData.a === currentQuizData.correct){
- rightAnswer()
+ rightAnswer();
  
     }
-     else{wrongAnswer()
+     else{wrongAnswer();
 
         
         
         }   
-        
-          
-        currentQuiz ++
+        currentQuiz++;
+        console.log(currentQuiz);
+      
         if (qb.length <= currentQuiz){
-        
             endScreen.style.display = "block" 
             questionsContainer.setAttribute("style", "hide;");
              
      }
      
      else {
-         quiz()
+         quiz();
      }
 })
 
@@ -257,18 +256,22 @@ op4.addEventListener("click", function(){
     
 }) 
 
-console.log(score)
+//console.log(score)
+console.log(currentQuiz);
 }
 
 
 quiz()
 
 
+
+// code for end page 
 let initial = document.querySelector("#initials")
 let messageArea = document.querySelector("#feedback")
 let finalScores = document.querySelector("#final-score")
 
 
+// create a function to take  user initial and display scores while storing in local storage 
 function messageInArea(type, friend) {
     messageArea.textContent =  friend;
     messageArea.style.display ="block"
@@ -296,7 +299,7 @@ function messageInArea(type, friend) {
 
     else {
 
-      window.location.href ="http://127.0.0.1:5502/starter/html/highscores.html"
+      location.pathname ="/starter/html/highscores.html"
       messageInArea("error", "initials shouldn't exceed 3 characters")
     }
  
@@ -310,3 +313,6 @@ function messageInArea(type, friend) {
   
   )
 
+  var pname = window.location.pathname;
+
+console.log(pname)
