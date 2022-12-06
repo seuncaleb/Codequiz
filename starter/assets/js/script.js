@@ -16,7 +16,7 @@ let op4 = document.querySelector('#op4');
 
 
 
-var secondsLeft = 20
+var secondsLeft = 1000
 
 // add an event to the start button to allow it start the quiz once it is clicked and reveal the questions 
 
@@ -64,7 +64,7 @@ for (var i=0; i < options.length; i++){
 // create two functions for right and wrong answers 
 function rightAnswer () { 
 answer.textContent = "Correct!"
-score ++    
+score ++;   
  answer.setAttribute("style", "color: Green; font-size: 12px;")
 }
 
@@ -135,7 +135,7 @@ function quiz (){
 
    
     let currentQuizData = qb[currentQuiz];
-
+console.log(currentQuizData);
 eachQuestion.innerHTML =currentQuizData.question;
 
 
@@ -261,7 +261,7 @@ console.log(currentQuiz);
 }
 
 
-quiz()
+quiz();
 
 
 
