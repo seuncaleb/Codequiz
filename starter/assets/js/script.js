@@ -16,7 +16,7 @@ let op4 = document.querySelector('#op4');
 
 
 
-var secondsLeft = 1000
+var secondsLeft = 1000;
 
 // add an event to the start button to allow it start the quiz once it is clicked and reveal the questions 
 
