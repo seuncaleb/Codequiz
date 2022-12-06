@@ -14,13 +14,12 @@ let op3 = document.querySelector('#op3');
 let op4 = document.querySelector('#op4');
 
 
+
+
 var secondsLeft = 20
 
 // add an event to the start button to allow it start the quiz once it is clicked and reveal the questions 
-startQuizBut.addEventListener("click", (startQuiz)
-    
- 
-)
+
 
 
 function startQuiz (){var timeInterval = setInterval(() => {
@@ -30,8 +29,15 @@ function startQuiz (){var timeInterval = setInterval(() => {
     
     if (secondsLeft === 0){
 
-        questionsContainer.textContent =" Game Over";
+        endScreen.style.display = "block";
+        questionsContainer.setAttribute("style", "hide;");
         clearInterval(timeInterval);
+    }
+
+    if(qb.length <= currentQuiz ){
+
+        timer.textContent ="Done"
+
     }
             
         }, 1000); 
@@ -42,41 +48,76 @@ function startQuiz (){var timeInterval = setInterval(() => {
 
 }
 
+startQuizBut.addEventListener("click", startQuiz)
+
 // create a variable to store and display right and wrong answers
 var answerContainer = document.createElement("div");
  var answer = document.createElement("h3");
+
+ answerContainer.setAttribute("style", "padding: 12px; margin-top: 20px")
 questionsContainer.appendChild(answerContainer)
 answerContainer.appendChild(answer)
     
+for (var i=0; i < options.length; i++){
+    options[i].setAttribute("style", "width: 50%; padding: 15px; text-align: left; ")}
 
 // create two functions for right and wrong answers 
 function rightAnswer () { 
 answer.textContent = "Correct!"
+score ++
  answer.setAttribute("style", "color: Green; font-size: 12px;")
 }
 
 function wrongAnswer () {
 answer.textContent = "Opps, that's a wrong answer!"
 answer.setAttribute("style", "color: red; font-size: 12px;")
+secondsLeft = secondsLeft - 2
 } 
 
 
 // create an array of objects to store questions, options and correct answers 
 let  qb =
-    [ {question: "Who is your President?",
+    [{question: "Commonly used data types DO Not Include",
 
-    a: "Obama", 
-    b: "Biden",
-    c: "Opera",
-    d: "Your Mum",
-correct: "Biden" },
+    a: "1. strings", 
+    b: "2. booleans",
+    c: "3. alerts",
+    d: "4. numbers",
+correct: "3. alerts"},
 
-{question: "What did I have for dinner?",
-        a: "Bread",
-        b: "rice",
-        c: "Fish",
-        d: "Nothing",
-    correct: "Fish"}]
+{question: "The condition in an if / else statement is enclosed with",
+
+        a: "1. quotes",
+        b: "2. curly brackets",
+        c: "3. parenthesis",
+        d: "4. square brackets",
+    correct: "3. parenthesis"},
+
+{question: "Arrays in JavaScript can be used to store?",
+
+    a: "1. number and strings", 
+    b: "2. other arrays",
+    c: "3. booleans",
+    d: "4. all of the above",
+correct: "4. all of the above" },
+
+{question: "String values must be enclosed within __________ when being assigned to variables.",
+
+    a: "1. commas", 
+    b: "2. curly brackets",
+    c: "3. quotes",
+    d: "4. parenthesis",
+correct: "3. quotes" },
+
+{question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+
+    a: "1. JavaScript", 
+    b: "2. terminal/bash",
+    c: "3. for loops",
+    d: "4. console.log",
+correct: "4. console.log" },
+]
+
 
 
 
@@ -85,22 +126,25 @@ correct: "Biden" },
 let currentQuiz = 0
 let score = 0
 
+// option button design 
 
 
 
-quiz()
 // create a function to start the quiz 
 function quiz (){
 
+   
     let currentQuizData = qb[currentQuiz]
 
-eachQuestion.textContent = currentQuizData.question
+eachQuestion.innerHTML =currentQuizData.question
 
 
 op1.textContent = currentQuizData.a;
 op2.textContent = currentQuizData.b;
 op3.textContent = currentQuizData.c;
 op4.textContent = currentQuizData.d;
+
+
 
 
 
@@ -113,12 +157,26 @@ op4.textContent = currentQuizData.d;
 
     if ( currentQuizData.a === currentQuizData.correct){
  rightAnswer()
- score++
+ 
     }
      else{wrongAnswer()
+
+        
+        
         }   
+        
+          
         currentQuiz ++
-        quiz()     
+        if (qb.length <= currentQuiz){
+        
+            endScreen.style.display = "block" 
+            questionsContainer.setAttribute("style", "hide;");
+             
+     }
+     
+     else {
+         quiz()
+     }
 })
 
 
@@ -128,14 +186,23 @@ op2.addEventListener("click", function(){
     if ( currentQuizData.b === currentQuizData.correct){
 
     rightAnswer();
-    score++; 
+     
     }
     else{wrongAnswer()
-           }  
-           
-           
-           currentQuiz ++
-           quiz()               
+        }  
+          
+          
+             currentQuiz++
+             if (qb.length <= currentQuiz){
+        
+                endScreen.style.display = "block"  
+                questionsContainer.setAttribute("style", "hide;");
+                   
+         }
+         
+         else {
+             quiz()
+         }          
 })
 
 
@@ -144,13 +211,25 @@ op3.addEventListener("click", function () {
         if (currentQuizData.c === currentQuizData.correct) {
 
             rightAnswer();
-            score++
+            
+           
         }
         else {
             wrongAnswer();
+            
         }
-        currentQuiz ++
-        quiz() 
+       
+        
+        currentQuiz++
+        if (qb.length <= currentQuiz){
+        
+            endScreen.style.display = "block"   
+            questionsContainer.setAttribute("style", "hide;"); 
+     }
+     
+     else {
+         quiz()
+     }
 
     })
 
@@ -159,36 +238,75 @@ op4.addEventListener("click", function(){
     if (  currentQuizData.d === currentQuizData.correct){
 
         rightAnswer()
-        score ++
+        
     }
-    else{wrongAnswer()}
-    currentQuiz ++
-    quiz() 
+    else{wrongAnswer(); }
+   
+    
+    currentQuiz++
+    if (qb.length <= currentQuiz){
+        
+        endScreen.style.display = "block"   
+        questionsContainer.setAttribute("style", "hide;");
+        
+ }
+ 
+ else {
+     quiz()
+ }
     
 }) 
 
-console.log(currentQuiz)
+console.log(score)
 }
 
 
+quiz()
 
 
+let initial = document.querySelector("#initials")
+let messageArea = document.querySelector("#feedback")
+let finalScores = document.querySelector("#final-score")
 
 
+function messageInArea(type, friend) {
+    messageArea.textContent =  friend;
+    messageArea.style.display ="block"
+    messageArea.setAttribute("class", type)
+    messageArea.setAttribute("style", "font-size:12px; color: green;")
+  }
+  
+  let submit = document.querySelector("#submit")
 
+  submit.addEventListener("click", function(event){
+ 
+    event.preventDefault();
 
+    let playerInfo = {
 
+        player:  initial.value.trim(),
+        score: score
 
+    }
 
+    if (playerInfo.player.length > 3)
+    {
+        messageInArea("error", "initials shouldn't exceed 3 characters")
+    }
 
+    else {
 
+      window.location.href ="http://127.0.0.1:5502/starter/html/highscores.html"
+      messageInArea("error", "initials shouldn't exceed 3 characters")
+    }
+ 
+  
 
+    localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
 
+    console.log(localStorage);
+  } 
+  
+  
+  )
 
-
-function endTime(){
-
-    startScreen.setAttribute("class", "hide");
-    questionsContainer.setAttribute ("class", "hide")
-    endScreen.style.display = "block";
-}
