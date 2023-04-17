@@ -33,7 +33,7 @@ This week i built a web quiz app using HTML, CSS, and Java Script. In JavaScript
 [ Repo link ](https://github.com/seuncaleb/Codequiz) 
 
 ## Project Image
-[Screenshot](assets\127.0.0.1_5502_index.html.png)
+![Screenshot](assets\127.0.0.1_5502_index.html.png)
 
 ## Link to Project
 [ Project link ](https://seuncaleb.github.io/Codequiz/) 
